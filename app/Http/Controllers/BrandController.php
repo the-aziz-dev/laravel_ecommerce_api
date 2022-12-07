@@ -2,62 +2,57 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+
+    public function index(): JsonResponse
     {
-        //
+        return $this->successResponse(
+            200, 'Brands retrieved successfully.', Brand::all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+    public function store(Request $request): JsonResponse
     {
-        //
+        Brand::query()->create([
+            'title' => $request->title,
+            'image' => $request->image
+        ]);
+
+        $dataResponse = Brand::query()->orderBy('id', 'desc')->first();
+        return $this->successResponse(
+            201, 'Brand created successfully.', $dataResponse);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+
+    public function show(Brand $brand): JsonResponse
     {
-        //
+        return $this->successResponse(
+            201, 'Brand retrieved successfully.', $brand);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+
+    public function update(Request $request, Brand $brand): JsonResponse
     {
-        //
+        Brand::query()->update([
+            'title' => $request->title,
+            'image' => $request->image
+        ]);
+
+        return $this->successResponse(
+            200, 'Brand updated successfully.', $brand);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+
+    public function destroy(Brand $brand): JsonResponse
     {
-        //
+        $brand->delete();
+        return $this->successResponse(
+            200, 'Brand deleted successfully', $brand);
     }
 }
