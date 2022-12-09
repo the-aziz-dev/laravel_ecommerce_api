@@ -11,4 +11,20 @@ class Brand extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = [];
+
+    public function storeBrand($request)
+    {
+        Brand::query()->create([
+            'title' => $request->title,
+            'image' => $request->image
+        ]);
+    }
+
+    public function updateBrand($request)
+    {
+        Brand::query()->update([
+            'title' => $request->title,
+            'image' => $request->image
+        ]);
+    }
 }
