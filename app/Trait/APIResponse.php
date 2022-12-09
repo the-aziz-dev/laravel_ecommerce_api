@@ -9,15 +9,17 @@ trait APIResponse
     protected static function successResponse($statusCode, $data): JsonResponse
     {
         return response()->json([
-            'status' => 'successful',
+            'status' => $statusCode,
+            'message' => 'Successful',
             'results' => $data,
         ], $statusCode);
     }
 
-    protected static function failResponse($statusCode): JsonResponse
+    protected static function failResponse($statusCode, $message): JsonResponse
     {
         return response()->json([
-            'status' => 'failed',
+            'status' => $statusCode,
+            'message' => $message,
         ], $statusCode);
     }
 }
