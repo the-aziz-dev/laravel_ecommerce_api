@@ -12,8 +12,7 @@ class BrandController extends Controller
 
     public function index(): JsonResponse
     {
-        return $this->successResponse(
-            200, Brand::all());
+        return $this->successResponse(200, Brand::all());
     }
 
 
@@ -32,8 +31,7 @@ class BrandController extends Controller
 
     public function show(Brand $brand): JsonResponse
     {
-        return $this->successResponse(
-            201, $brand);
+        return $this->successResponse(200, $brand);
     }
 
 
@@ -52,7 +50,6 @@ class BrandController extends Controller
     public function destroy(Brand $brand): JsonResponse
     {
         $brand->delete();
-        return $this->successResponse(
-            200, $brand);
+        return $this->successResponse(200, $brand);
     }
 }
