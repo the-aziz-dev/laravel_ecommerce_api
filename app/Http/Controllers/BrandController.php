@@ -13,7 +13,7 @@ class BrandController extends Controller
     public function index(): JsonResponse
     {
         return $this->successResponse(
-            200, 'Brands retrieved successfully.', Brand::all());
+            200, Brand::all());
     }
 
 
@@ -26,14 +26,14 @@ class BrandController extends Controller
 
         $dataResponse = Brand::query()->orderBy('id', 'desc')->first();
         return $this->successResponse(
-            201, 'Brand created successfully.', $dataResponse);
+            201, $dataResponse);
     }
 
 
     public function show(Brand $brand): JsonResponse
     {
         return $this->successResponse(
-            201, 'Brand retrieved successfully.', $brand);
+            201, $brand);
     }
 
 
@@ -45,7 +45,7 @@ class BrandController extends Controller
         ]);
 
         return $this->successResponse(
-            200, 'Brand updated successfully.', $brand);
+            200, $brand);
     }
 
 
@@ -53,6 +53,6 @@ class BrandController extends Controller
     {
         $brand->delete();
         return $this->successResponse(
-            200, 'Brand deleted successfully', $brand);
+            200, $brand);
     }
 }
