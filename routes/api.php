@@ -14,10 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::controller(BrandController::class)->group(function () {
-    Route::get('/brands', 'index');
-    Route::post('/brand', 'store');
-    Route::get('/brands/{brand}', 'show');
-    Route::put('/brands/{brand}', 'update');
-    Route::delete('/brands/{brand}', 'destroy');
-});
+Route::apiResource('/brands', BrandController::class);
