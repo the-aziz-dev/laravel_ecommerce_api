@@ -65,4 +65,9 @@ class CategoryController extends Controller
     {
         return self::successResponse(200, new CategoryResource($category->load('parent')));
     }
+
+    public function children(Category $category): JsonResponse
+    {
+        return self::successResponse(200, new CategoryResource($category->load('children')));
+    }
 }
