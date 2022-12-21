@@ -17,6 +17,10 @@ class CategoryResource extends JsonResource
      */
     public function toArray($request): array|JsonSerializable|Arrayable
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'parent' => new CategoryResource($this->whenLoaded('parent'))
+        ];
     }
 }

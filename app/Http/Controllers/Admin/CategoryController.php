@@ -60,4 +60,9 @@ class CategoryController extends Controller
         $category->delete();
         return self::successResponse(200, new CategoryResource($category));
     }
+
+    public function parent(Category $category): JsonResponse
+    {
+        return self::successResponse(200, new CategoryResource($category->load('parent')));
+    }
 }
